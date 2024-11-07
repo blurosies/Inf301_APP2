@@ -5,6 +5,7 @@
 #ifdef NCURSES
 #include <ncurses.h>
 #endif
+#include "pile.h"
 #include "listes.h"
 #include "curiosity.h"
 
@@ -16,45 +17,6 @@
  *
  */
 
-#define TAILLE_MAX 100 
-
-// definir structure de la pile
-typedef struct {
-    char* tab[TAILLE_MAX];
-    int nb_elem;
-} pile;
-
-
-
-void empiler(pile *p, char *x) {
-    if (p->nb_elem < TAILLE_MAX) {
-        p->tab[p->nb_elem++] = x;
-    } else {
-        fprintf(stderr, "Débordement de pile !\n");
-        exit(EXIT_FAILURE);
-    }
-}
-
-char *depiler(pile *p) {
-    if (p->nb_elem > 0) {
-        return p->tab[--p->nb_elem];
-    } else {
-        fprintf(stderr, "Dépassement de pile !\n");
-        exit(EXIT_FAILURE);
-    }
-}
-
-void afficher_pile(const pile *p) {
-    if (p->nb_elem == 0) {
-        printf("La pile est vide !\n");
-    } else {
-        printf("Contenu de la pile: ");
-        for (int i = p->nb_elem - 1; i >= 0; i--) {
-            printf("%s ", p->tab[i]);
-        }
-    }
-}
-
 void stop (void)
 {
     char enter = '\0';
@@ -64,7 +26,7 @@ void stop (void)
 
 
 
-int interprete (sequence_t* seq, bool debug)
+int interprete (sequence_t* seq, bool debug,pile_t *p)
 {
     // Version temporaire a remplacer par une lecture des commandes dans la
     // liste chainee et leur interpretation.
@@ -90,13 +52,15 @@ int interprete (sequence_t* seq, bool debug)
                 ret = avance();
                 if (ret == VICTOIRE) return VICTOIRE; /* on a atteint la cible */
                 if (ret == RATE)     return RATE;     /* tombé dans l'eau ou sur un rocher */
-                break; /* à ne jamais oublier !!! */
+                break;
             case 'G':
                 gauche();
-                break; /* à ne jamais oublier !!! */
+                break;
             case 'D':
                 droite();
-                break; /* à ne jamais oublier !!! */
+                break;
+            case '0'...'9':
+                empiler(p,seq->tete->command);
             default:
                 eprintf("Caractère inconnu: '%c'\n", seq->tete->command);
         }

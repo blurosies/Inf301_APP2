@@ -7,6 +7,7 @@
 #include <ncurses.h>
 #endif
 #include "curiosity.h"
+#include "pile.h"
 #include "listes.h"
 #include "interprete.h"
 
@@ -24,6 +25,7 @@
 
 char program[PROGSIZE];
 sequence_t prog_seq;
+pile_t p;
 int numero_carte = -1; /* ne lancer que le test de cette carte */
 
 
@@ -57,7 +59,7 @@ void launch (bool debug, int carte_num)
 
         conversion(program,&prog_seq);
 
-        switch (interprete (&prog_seq, debug)) { //interprete le programme lu jusqu'a la fin de son execution 
+        switch (interprete (&prog_seq, debug,&p)) { //interprete le programme lu jusqu'a la fin de son execution 
 
             if (! silent_mode) {
                 afficherCarte();
@@ -119,7 +121,7 @@ void read_test_file (char* fichier, bool debug)
 
     while (! feof(f)) {
 
-        ssize_t linesize = getline (&line, &maxlinesize, f);
+        size_t linesize = getline (&line, &maxlinesize, f);
 
         if (linesize == -1) { /* end of file */
             /* perror ("Error reading file:"); */
