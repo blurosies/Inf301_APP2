@@ -80,7 +80,7 @@ void interroger(pile_t *p , sequence_t *s){
         }
     }
     else{
-        for (int i=(int)strlen(retenu) ; i>=0; i++){
+        for (int i=(int)strlen(retenu); i>=0; i--){
             ajoute_en_tete(s , retenu[i]);
     }
 }
