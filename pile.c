@@ -36,11 +36,6 @@ void afficher_pile(pile_t *p) {
     }
 }
 
-void convert(int x,char num [2]){
-    num[0]=x+'0';
-    num[1]='\0';
-}
-
 
 void calculette(pile_t *p , char symb){
     char num[2];
@@ -48,7 +43,7 @@ void calculette(pile_t *p , char symb){
     int j = atoi(depiler(p));
     switch (symb){
         case '+':
-            convert(i+j,num);
+            sprintf(num,"%d",i+j);
             empiler(p,num);
             break;
         case '*':

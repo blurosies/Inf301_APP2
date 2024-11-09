@@ -67,6 +67,14 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
             case '*':
                 calculette(p,seq->tete->command);
                 break;
+            case 'P':
+                pose(atoi(depiler(p)));
+                break;
+            case 'M':
+                ;
+                char mes[2];
+                sprintf(mes,"%d",mesure(atoi(depiler(p)))); //Convertir le int dans la chaine mes
+                empiler(p,mes);
             default:
                 eprintf("Caractère inconnu: '%c'\n", seq->tete->command);
         }
