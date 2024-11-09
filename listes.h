@@ -2,6 +2,7 @@
 #define LISTES_H
 
 #include <stdbool.h>
+#include "pile.h"
 
 /*
  * Pour réaliser des tests de performance, désactiver tous les 
@@ -47,6 +48,10 @@ void detruireCellule (cellule_t*);
 void conversion (char *texte, sequence_t *seq);
 
 void afficher (sequence_t* seq);
+
+void ajout_cmd(pile_t *p , sequence_t *s);
+
+void interroger(pile_t *p , sequence_t *s);
 
 
 #endif

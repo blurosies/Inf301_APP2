@@ -5,7 +5,6 @@
 #ifdef NCURSES
 #include <ncurses.h>
 #endif
-#include "pile.h"
 #include "listes.h"
 #include "curiosity.h"
 
@@ -73,8 +72,15 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
             case 'M':
                 ;
                 char mes[2];
-                sprintf(mes,"%d",mesure(atoi(depiler(p)))); //Convertir le int dans la chaine mes
+                sprintf(mes,"%d",mesure(atoi(depiler(p)))); //Convertir le int dans la chaine 'mes'
                 empiler(p,mes);
+                break;
+            case '{':
+                ajout_cmd(p,seq);
+                break;
+            case '?':
+                interroger(p,seq);
+                break;
             default:
                 eprintf("Caractère inconnu: '%c'\n", seq->tete->command);
         }

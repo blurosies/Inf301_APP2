@@ -52,3 +52,36 @@ void afficher (sequence_t* seq)
         printf("%c", c->command);
         c = c->suivant; }
 }
+
+void ajout_cmd(pile_t *p , sequence_t *s){
+    char str2[512];
+    int i=0;
+    cellule_t* curr = s->tete;
+    while (curr->suivant->command != '}'){
+        str2[i]=curr->command;
+        curr=curr->suivant;
+        i++;
+    }
+    str2[i]=curr->command;
+    str2[i+1]='\0';
+    empiler(p,str2);
+    s->tete=curr->suivant;
+}
+ 
+
+void interroger(pile_t *p , sequence_t *s){
+    s->tete = s->tete->suivant;
+    char * libre = depiler(p);
+    char * retenu = depiler(p);
+    int n = atoi(depiler(p));
+    if (n==0){
+        for (int i=(int)strlen(libre); i>=0; i--){
+            ajoute_en_tete(s , libre[i]);
+        }
+    }
+    else{
+        for (int i=(int)strlen(retenu) ; i>=0; i++){
+            ajoute_en_tete(s , retenu[i]);
+    }
+}
+}
