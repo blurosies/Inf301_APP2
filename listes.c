@@ -57,7 +57,12 @@ void ajout_cmd(pile_t *p , sequence_t *s){
     char str2[512];
     int i=0;
     cellule_t* curr = s->tete;
-    while (curr->suivant->command != '}'){
+    int cpt = 1;
+    while (cpt != 0){
+        if (curr->suivant->command == '{')
+            cpt=cpt+1;
+        else if (curr->suivant->command == '}')
+            cpt=cpt-1;
         str2[i]=curr->command;
         curr=curr->suivant;
         i++;
@@ -65,7 +70,7 @@ void ajout_cmd(pile_t *p , sequence_t *s){
     str2[i]=curr->command;
     str2[i+1]='\0';
     empiler(p,str2);
-    s->tete=curr->suivant;
+    s->tete=curr;
 }
  
 
@@ -75,12 +80,12 @@ void interroger(pile_t *p , sequence_t *s){
     char * retenu = depiler(p);
     int n = atoi(depiler(p));
     if (n==0){
-        for (int i=(int)strlen(libre); i>=0; i--){
+        for (int i=(int)strlen(libre)+1; i>=0; i--){
             ajoute_en_tete(s , libre[i]);
         }
     }
     else{
-        for (int i=(int)strlen(retenu); i>=0; i--){
+        for (int i=(int)strlen(retenu)+1; i>=0; i--){
             ajoute_en_tete(s , retenu[i]);
     }
 }
