@@ -53,5 +53,8 @@ void ajout_cmd(pile_t *p , sequence_t *s);
 
 void interroger(pile_t *p , sequence_t *s);
 
+void echange(pile_t *p);
+
+void exclam(pile_t *p, sequence_t *s);
 
 #endif

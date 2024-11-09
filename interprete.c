@@ -30,9 +30,7 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
     // Version temporaire a remplacer par une lecture des commandes dans la
     // liste chainee et leur interpretation.
 
-
-
-    debug = true; /* À enlever par la suite et utiliser "-d" sur la ligne de commandes */
+    debug =true;
 
     printf ("Programme:");
     afficher(seq);
@@ -81,17 +79,31 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
             case '?':
                 interroger(p,seq);
                 break;
+            case 'X':
+                echange(p);
+                break;
+            case '!':
+                exclam(p,seq);
+                break;
+            case 'I':
+                depiler(p);
+                break;
+            case 'C':
+                empiler(p,p->tete->nom);
+                break;
             default:
                 eprintf("Caractère inconnu: '%c'\n", seq->tete->command);
         }
         seq->tete = seq->tete->suivant;
 
         /* Affichage pour faciliter le debug */
+        if(! silent_mode){
         afficherCarte();
         afficher_pile(p);
         printf ("Programme:");
         afficher(seq);
         printf ("\n");
+        }
         if (debug) stop();
     }
 

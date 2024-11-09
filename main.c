@@ -7,12 +7,11 @@
 #include <ncurses.h>
 #endif
 #include "curiosity.h"
-#include "pile.h"
 #include "listes.h"
 #include "interprete.h"
 
 /*
- *  Auteur(s) :
+ *  Auteur(s) : Nader Marie Ange, Sadek Mira
  *  Date :
  *  Suivi des Modifications :
  *

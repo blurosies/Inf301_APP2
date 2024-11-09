@@ -90,3 +90,18 @@ void interroger(pile_t *p , sequence_t *s){
     }
 }
 }
+
+void echange(pile_t *p){
+    char * un = depiler(p);
+    char * deux = depiler(p);
+    empiler(p,un);
+    empiler(p,deux);
+}
+
+void exclam(pile_t *p, sequence_t *s){
+    s->tete = s->tete->suivant;
+    char * exec = depiler(p);
+    for (int i=(int)strlen(exec)+1; i>=0; i--){
+            ajoute_en_tete(s , exec[i]);
+
+}}
