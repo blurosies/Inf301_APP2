@@ -4,18 +4,12 @@
 #include <stdio.h>
 
 
-el_pile* nouvelleCellule (void){
-    el_pile *c;
-    c = (el_pile *)malloc(sizeof(el_pile));
-    return c;
-}
-
 void empiler(pile_t *p, char* s) {
-    struct elem *e= malloc(sizeof(el_pile))  ;
-    e->nom = s ;
+    el_pile *e= malloc(sizeof(el_pile))  ;
+    e->nom = malloc(strlen(s)+1);
+    strcpy(e->nom,s);
     e->suiv = p->tete;
     p->tete = e;
-    return;
 }
 
 
@@ -26,13 +20,44 @@ char * depiler(pile_t *p){
 }
 
 void afficher_pile(pile_t *p) {
+    if(p!=NULL){
+    el_pile *current = p->tete;
     if (p->tete == NULL) {
         printf("La pile est vide !\n");
     } else {
-        printf("Contenu de la pile: ");
-        while (p->tete != NULL){
-            printf("%s", p->tete->nom);
-            p->tete = p->tete->suiv;
+        while (current != NULL){
+            printf("Contenu de la pile: %s\n", current->nom);
+            current=current->suiv;
         }
         }
     }
+    else{
+        printf("PILE VIDE");
+    }
+}
+
+void convert(int x,char num [2]){
+    num[0]=x+'0';
+    num[1]='\0';
+}
+
+
+void calculette(pile_t *p , char symb){
+    char num[2];
+    int i = atoi(depiler(p));
+    int j = atoi(depiler(p));
+    switch (symb){
+        case '+':
+            convert(i+j,num);
+            empiler(p,num);
+            break;
+        case '*':
+            sprintf(num,"%d",i*j);
+            empiler(p, num);
+            break;
+        case '-':
+            sprintf(num,"%d",j-i);
+            empiler(p,num);
+            break;
+    }
+}

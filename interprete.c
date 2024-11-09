@@ -60,7 +60,13 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
                 droite();
                 break;
             case '0'...'9':
-                empiler(p,seq->tete->command);
+                empiler(p,&seq->tete->command);
+                break;
+            case '+':
+            case '-':
+            case '*':
+                calculette(p,seq->tete->command);
+                break;
             default:
                 eprintf("Caractère inconnu: '%c'\n", seq->tete->command);
         }
@@ -68,6 +74,7 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
 
         /* Affichage pour faciliter le debug */
         afficherCarte();
+        afficher_pile(p);
         printf ("Programme:");
         afficher(seq);
         printf ("\n");

@@ -123,7 +123,7 @@ void read_test_file (char* fichier, bool debug)
 
         size_t linesize = getline (&line, &maxlinesize, f);
 
-        if (linesize == -1) { /* end of file */
+        if (linesize == (unsigned long) -1) { /* end of file */
             /* perror ("Error reading file:"); */
             break;
         }
