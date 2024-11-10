@@ -123,3 +123,4 @@ void boucle(pile_t *p , sequence_t *s){
     }
 
 }
+

@@ -93,6 +93,7 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
                 break;
             case 'B':
                 boucle(p,seq);
+                break;
             default:
                 eprintf("Caractère inconnu: '%c'\n", seq->tete->command);
         }
@@ -101,7 +102,7 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
         /* Affichage pour faciliter le debug */
         if(! silent_mode){
         afficherCarte();
-        afficher_pile(p);
+        // afficher_pile(p);
         printf ("Programme:");
         afficher(seq);
         printf ("\n");

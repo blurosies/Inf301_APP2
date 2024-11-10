@@ -16,6 +16,8 @@ mettre ici:
 
 -----------------------------------------------------------------------------
 
+Nous n'avons pas fais la rotation.
+
 Compléxité analyse interprète:
 
 Soit n la taille d'une chaine de charactère passée en argument dans les 
