@@ -57,4 +57,6 @@ void echange(pile_t *p);
 
 void exclam(pile_t *p, sequence_t *s);
 
+void boucle(pile_t *p , sequence_t *s);
+
 #endif

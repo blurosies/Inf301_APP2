@@ -91,6 +91,8 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
             case 'C':
                 empiler(p,p->tete->nom);
                 break;
+            case 'B':
+                boucle(p,seq);
             default:
                 eprintf("Caractère inconnu: '%c'\n", seq->tete->command);
         }

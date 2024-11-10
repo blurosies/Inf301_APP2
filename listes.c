@@ -105,3 +105,14 @@ void exclam(pile_t *p, sequence_t *s){
             ajoute_en_tete(s , exec[i]);
 
 }}
+
+void boucle(pile_t *p , sequence_t *s){
+    int n = atoi(p->tete->nom);
+    char * bouc= p->tete->suiv->nom;
+    for (int i=(int)strlen(bouc)+1; i>=0; i--){
+            ajoute_en_tete(s , bouc[i]);
+    empiler(p,bouc);
+    n--;
+    if (n==0)
+        s->tete = s->tete->suivant;
+}}
