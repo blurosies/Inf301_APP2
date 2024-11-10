@@ -30,7 +30,7 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
     // Version temporaire a remplacer par une lecture des commandes dans la
     // liste chainee et leur interpretation.
 
-    // debug =true;
+    debug =true;
 
     printf ("Programme:");
     afficher(seq);

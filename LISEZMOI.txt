@@ -14,12 +14,59 @@ Nom2 - prénom2 : Nader Marie Ange
 Si vous avez des commentaires, remarques etc. pour le rendu, vous pouvez les 
 mettre ici:
 
-...
-...
-...
+-----------------------------------------------------------------------------
 
+Compléxité analyse interprète:
 
+Soit n la taille d'une chaine de charactère passée en argument dans les 
+fonctions suivantes
 
+Dans le switch:
+cases A G D :
+    les fonctions avance droite et gauche sont de comp. o(1) puisqu il n y a 
+    aucune boucle / pas de rapport avec n.
+cases 0 ... 9 :
+    la fonction empiler à une Compléxité de o(n). (à cause de la fonction
+    strcpy)
+cases + - * :
+    la Compléxité de la fonction calculette est de o(n):
+    il n'y a pas de boucle, juste l'utilisation de sprintf et empiler
+    dans un switch.
+case P :
+    les fonctions pose et depiler sont de Compléxité o(1), mais atoi est
+    de comp. o(n) donc o(n)*o(1)*o(1)= o(n)
+case M :
+    sprintf et empiler: o(n2)+o(n)=o(n2) *remarque à la fin
+case '{' :
+    ajout_cmd est de Compléxité o(n)
+case ? :
+    interroger est de complexite o(n)
+case X :
+    echange est de complexite o(n)
+case ! :
+    exclam est de complexite o(n)
+case I :
+    depiler est de Compléxité o(1)
+case C :
+    empiler est de Compléxité o(n)
+case B :
+    boucle est de Compléxité o(n)
+
+* malgrès la complexite du case M qui est o(n2), c'est un cas qui ne s'éxecute pas
+assez fréquement, donc la compléxité de la fonction interprete reste tout de meme 
+o(n), comme observé dans les graphiques obtenus après les testd où nous pouvons
+très clairement voir une courbe linéaire.
+
+---------------------------------------------------------------------------------------
+                                                                                      |
+Compléxité conclusion:                                                                |
+en observant les fichiers .png (base, long et piiile) nous pouvons voir une courbe    |
+totalement linéaire. Nous pouvons alors conclure que notre code est de Compléxité     |
+O(n).                                                                                 |
+Cela indique que le temps d'exécution de l'algorithme augmente proportionnellement    |
+à la taille de n, ce qui nous permet d'avoir une limite élevée pour la valeure n      |
+                                                                                      |
+---------------------------------------------------------------------------------------
 
 ****************************************************************
 **  Langage Python                                            **
