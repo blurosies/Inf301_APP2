@@ -107,12 +107,19 @@ void exclam(pile_t *p, sequence_t *s){
 }}
 
 void boucle(pile_t *p , sequence_t *s){
-    int n = atoi(p->tete->nom);
-    char * bouc= p->tete->suiv->nom;
+    char buff[2];
+    int n = atoi(depiler(p));
+    char * bouc = p->tete->nom;
     for (int i=(int)strlen(bouc)+1; i>=0; i--){
             ajoute_en_tete(s , bouc[i]);
-    empiler(p,bouc);
+            }
     n--;
-    if (n==0)
+    if (n==0){
         s->tete = s->tete->suivant;
-}}
+    }
+    else{
+        sprintf(buff,"%d",n); // converti dans la chaine buff
+        empiler(p,buff);
+    }
+
+}
