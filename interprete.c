@@ -30,7 +30,7 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
     // Version temporaire a remplacer par une lecture des commandes dans la
     // liste chainee et leur interpretation.
 
-    debug =true;
+    //debug =true;
 
     printf ("Programme:");
     afficher(seq);
@@ -70,7 +70,7 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
             case 'M':
                 ;
                 char mes[2];
-                sprintf(mes,"%d",mesure(atoi(depiler(p)))); //Convertir le int dans la chaine 'mes'
+                sprintf(mes,"%d",mesure(atoi(depiler(p)))); //sprintf converti le int dans la chaine 'mes'
                 empiler(p,mes);
                 break;
             case '{':
@@ -97,12 +97,14 @@ int interprete (sequence_t* seq, bool debug,pile_t *p)
             default:
                 eprintf("Caractère inconnu: '%c'\n", seq->tete->command);
         }
+        cellule_t *libere =seq->tete;
         seq->tete = seq->tete->suivant;
+        free(libere);
 
         /* Affichage pour faciliter le debug */
         if(! silent_mode){
         afficherCarte();
-        // afficher_pile(p);
+        afficher_pile(p);
         printf ("Programme:");
         afficher(seq);
         printf ("\n");

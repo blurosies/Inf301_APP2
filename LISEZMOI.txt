@@ -14,6 +14,12 @@ Nom2 - prénom2 : Nader Marie Ange
 Si vous avez des commentaires, remarques etc. pour le rendu, vous pouvez les 
 mettre ici:
 
+Note:
+tous les tests de acte 1 jusqu'a ifignore marchent (sauf mysterieuZe et rotation)
+mais parfois la commande python3 tests/check. py c bug et done un fail alors que le test
+marche, après un test manuel, les résultats redeviennent normaux (Il PASS de nouveaux).
+(voir la photo NoteLisezmoi.png)
+
 -----------------------------------------------------------------------------
 
 Nous n'avons pas fais la rotation.
@@ -28,8 +34,8 @@ cases A G D :
     les fonctions avance droite et gauche sont de comp. o(1) puisqu il n y a 
     aucune boucle / pas de rapport avec n.
 cases 0 ... 9 :
-    la fonction empiler à une Compléxité de o(n). (à cause de la fonction
-    strcpy)
+    la fonction empiler à une Compléxité de o(1). (strcpy est en o(n)mais ici
+    n=1 car il n y a qu'un seul charactère).
 cases + - * :
     la Compléxité de la fonction calculette est de o(n):
     il n'y a pas de boucle, juste l'utilisation de sprintf et empiler

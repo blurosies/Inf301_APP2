@@ -57,27 +57,31 @@ void ajout_cmd(pile_t *p , sequence_t *s){
     char str2[512];
     int i=0;
     cellule_t* curr = s->tete;
-    int cpt = 1;
+    int cpt = 1; //cpt pour les imbriques
     while (cpt != 0){
         if (curr->suivant->command == '{')
             cpt=cpt+1;
         else if (curr->suivant->command == '}')
             cpt=cpt-1;
         str2[i]=curr->command;
+        cellule_t * lib = curr;
         curr=curr->suivant;
+        free(lib);
         i++;
     }
     str2[i]=curr->command;
-    str2[i+1]='\0';
+    str2[i+1]='\0'; //ajouter charac vide
     empiler(p,str2);
     s->tete=curr;
 }
  
 
 void interroger(pile_t *p , sequence_t *s){
+    cellule_t *lib =s->tete;
     s->tete = s->tete->suivant;
-    char * libre = depiler(p);
-    char * retenu = depiler(p);
+    free(lib);
+    char * libre = depiler(p); //exec si le terrain est libre
+    char * retenu = depiler(p); //exec si il y a un obstacle
     int n = atoi(depiler(p));
     if (n==0){
         for (int i=(int)strlen(libre)+1; i>=0; i--){
@@ -99,7 +103,9 @@ void echange(pile_t *p){
 }
 
 void exclam(pile_t *p, sequence_t *s){
+    cellule_t *lib =s->tete;
     s->tete = s->tete->suivant;
+    free(lib);
     char * exec = depiler(p);
     for (int i=(int)strlen(exec)+1; i>=0; i--){
             ajoute_en_tete(s , exec[i]);
@@ -107,20 +113,18 @@ void exclam(pile_t *p, sequence_t *s){
 }}
 
 void boucle(pile_t *p , sequence_t *s){
-    char buff[2];
+    char buff[2]; //besoin que de 2 charac
     int n = atoi(depiler(p));
     char * bouc = p->tete->nom;
-    for (int i=(int)strlen(bouc)+1; i>=0; i--){
+    for (int i=(int)strlen(bouc)-2; i>=0; i--){
             ajoute_en_tete(s , bouc[i]);
             }
     n--;
     if (n==0){
         s->tete = s->tete->suivant;
     }
-    else{
-        sprintf(buff,"%d",n); // converti dans la chaine buff
-        empiler(p,buff);
+    sprintf(buff,"%d",n); // converti dans la chaine buff
+    empiler(p,buff);
     }
 
-}
 
